@@ -1,36 +1,75 @@
+import { FaFlask, FaUserMd, FaBookOpen } from "react-icons/fa";
+
 export default function PatientDashboard() {
   return (
     <div className="space-y-10">
-      
-      {/* Header */}
+
+      {/* Header Section */}
       <div>
         <h1 className="text-4xl font-semibold text-gray-900">
-          Welcome to your Dashboard
+          Your Personalized Dashboard
         </h1>
+
         <p className="text-gray-600 mt-2">
-          Personalized recommendations based on your condition.
+          Explore trials, experts, and research tailored to your condition.
         </p>
       </div>
 
-      {/* Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+      {/* Grid Section */}
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
 
-        <div className="bg-white shadow-md rounded-2xl p-6 border border-gray-200">
-          <h2 className="text-xl font-semibold text-gray-900">Recommended Trials</h2>
-          <p className="text-gray-600 mt-1 text-sm">Based on your condition.</p>
-          <p className="mt-4 text-gray-500">Coming soon...</p>
+        {/* Clinical Trials Card */}
+        <div className="bg-white shadow-md rounded-2xl p-6 border border-gray-200 hover:shadow-lg transition">
+          <div className="flex items-center gap-3">
+            <FaFlask className="text-blue-600 text-2xl" />
+            <h2 className="text-xl font-semibold text-gray-900">
+              Clinical Trials
+            </h2>
+          </div>
+
+          <p className="text-gray-600 mt-2">
+            Recommended trials based on your condition.
+          </p>
+
+          <div className="mt-6 text-blue-600 font-medium cursor-pointer hover:underline">
+            View trials →
+          </div>
         </div>
 
-        <div className="bg-white shadow-md rounded-2xl p-6 border border-gray-200">
-          <h2 className="text-xl font-semibold text-gray-900">Health Experts</h2>
-          <p className="text-gray-600 mt-1 text-sm">Relevant specialists.</p>
-          <p className="mt-4 text-gray-500">Coming soon...</p>
+        {/* Health Experts Card */}
+        <div className="bg-white shadow-md rounded-2xl p-6 border border-gray-200 hover:shadow-lg transition">
+          <div className="flex items-center gap-3">
+            <FaUserMd className="text-green-600 text-2xl" />
+            <h2 className="text-xl font-semibold text-gray-900">
+              Health Experts
+            </h2>
+          </div>
+
+          <p className="text-gray-600 mt-2">
+            Specialists related to your medical condition.
+          </p>
+
+          <div className="mt-6 text-green-600 font-medium cursor-pointer hover:underline">
+            View experts →
+          </div>
         </div>
 
-        <div className="bg-white shadow-md rounded-2xl p-6 border border-gray-200">
-          <h2 className="text-xl font-semibold text-gray-900">Publications</h2>
-          <p className="text-gray-600 mt-1 text-sm">Latest findings.</p>
-          <p className="mt-4 text-gray-500">Coming soon...</p>
+        {/* Publications Card */}
+        <div className="bg-white shadow-md rounded-2xl p-6 border border-gray-200 hover:shadow-lg transition">
+          <div className="flex items-center gap-3">
+            <FaBookOpen className="text-purple-600 text-2xl" />
+            <h2 className="text-xl font-semibold text-gray-900">
+              Publications
+            </h2>
+          </div>
+
+          <p className="text-gray-600 mt-2">
+            Latest research related to your condition.
+          </p>
+
+          <div className="mt-6 text-purple-600 font-medium cursor-pointer hover:underline">
+            View publications →
+          </div>
         </div>
 
       </div>

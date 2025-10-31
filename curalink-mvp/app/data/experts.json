@@ -1,0 +1,35 @@
+[
+  {
+    "id": 1,
+    "name": "Dr. Sarah Mitchell",
+    "specialty": "Oncology",
+    "condition": "Lung Cancer",
+    "location": "New York, USA",
+    "experience": "12 years",
+    "available": true,
+    "summary": "Expert in immunotherapy and targeted cancer treatments.",
+    "contact": "s.mitchell@hospital.org"
+  },
+  {
+    "id": 2,
+    "name": "Dr. Jonathan Reed",
+    "specialty": "Neuro-Oncology",
+    "condition": "Glioblastoma",
+    "location": "Boston, USA",
+    "experience": "15 years",
+    "available": false,
+    "summary": "Researcher specializing in brain tumors and precision medicine.",
+    "contact": "j.reed@medresearch.com"
+  },
+  {
+    "id": 3,
+    "name": "Dr. Emily Carter",
+    "specialty": "Breast Cancer Specialist",
+    "condition": "Breast Cancer",
+    "location": "London, UK",
+    "experience": "10 years",
+    "available": true,
+    "summary": "Leading breast cancer researcher focused on hormone therapy.",
+    "contact": "e.carter@clinicmail.com"
+  }
+]

@@ -1,0 +1,29 @@
+[
+  {
+    "id": 1,
+    "title": "Lung Cancer Immunotherapy Study Phase II",
+    "condition": "Lung Cancer",
+    "status": "recruiting",
+    "location": "New York, USA",
+    "summary": "This trial studies a new immunotherapy drug targeting lung cancer progression.",
+    "contact": "lungstudy@researchmail.com"
+  },
+  {
+    "id": 2,
+    "title": "Glioblastoma Precision Treatment Research",
+    "condition": "Brain Cancer",
+    "status": "recruiting",
+    "location": "Boston, USA",
+    "summary": "Investigating targeted therapy options for Glioblastoma patients.",
+    "contact": "glioma-trial@hospital.org"
+  },
+  {
+    "id": 3,
+    "title": "Breast Cancer Hormone Therapy Trial",
+    "condition": "Breast Cancer",
+    "status": "completed",
+    "location": "London, UK",
+    "summary": "Study completed on hormone therapy effects in breast cancer treatment.",
+    "contact": "breaststudy@clinicmail.com"
+  }
+]

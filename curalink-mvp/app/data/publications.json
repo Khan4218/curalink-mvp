@@ -1,0 +1,29 @@
+[
+  {
+    "id": 1,
+    "title": "Neoadjuvant nivolumab plus chemotherapy in resectable non–small-cell lung cancer (CheckMate 816)",
+    "authors": "Forde PM, et al.",
+    "journal": "N Engl J Med / PubMed record",
+    "year": 2024,
+    "summary": "Neoadjuvant nivolumab combined with chemotherapy improved outcomes in resectable NSCLC in a randomized trial.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/40454642/"
+  },
+  {
+    "id": 2,
+    "title": "Precision medicine advancements in glioblastoma: systematic review",
+    "authors": "Iyer K, et al.",
+    "journal": "BioMedicine / PMC (open access)",
+    "year": 2023,
+    "summary": "A systematic review summarizing precision-medicine approaches and genetic profiling efforts in glioblastoma.",
+    "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10627207/"
+  },
+  {
+    "id": 3,
+    "title": "Menopausal hormone therapy and 20-year breast cancer mortality (Lancet / PubMed record)",
+    "authors": "Beral V, et al.",
+    "journal": "Lancet / PubMed record",
+    "year": 2019,
+    "summary": "Large cohort analysis investigating the association between menopausal hormone therapy and breast cancer risk/mortality.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/31474331/"
+  }
+]

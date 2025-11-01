@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "category": "Cancer Research",
+    "title": "Is immunotherapy effective for late-stage lung cancer?",
+    "author": "Patient",
+    "question": "I want to understand how immunotherapy works and if it is recommended for stage 4 lung cancer.",
+    "reply": "Immunotherapy can be effective depending on biomarkers like PD-L1 expression. A researcher would consider multiple clinical factors.",
+    "researcher": "Dr. Sarah Mitchell"
+  },
+  {
+    "id": 2,
+    "category": "Clinical Trials",
+    "title": "Am I eligible for Glioblastoma trials?",
+    "author": "Patient",
+    "question": "I was recently diagnosed with Glioblastoma. How do I know if I qualify for any global clinical trials?",
+    "reply": "Eligibility depends on age, genetic markers, and prior treatments. Trial coordinators typically evaluate patients individually.",
+    "researcher": "Dr. Jonathan Reed"
+  }
+]

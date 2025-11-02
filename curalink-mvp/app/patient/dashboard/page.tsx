@@ -1,4 +1,6 @@
 import { FaFlask, FaUserMd, FaBookOpen } from "react-icons/fa";
+import Link from "next/link";
+
 
 export default function PatientDashboard() {
   return (
@@ -32,7 +34,13 @@ export default function PatientDashboard() {
           </p>
 
           <div className="mt-6 text-blue-600 font-medium cursor-pointer hover:underline">
+            <Link
+            href="/patient/clinical-trials"
+            className="mt-6 text-blue-600 font-medium hover:underline"
+            >
             View trials →
+           </Link>
+
           </div>
         </div>
 
@@ -50,7 +58,12 @@ export default function PatientDashboard() {
           </p>
 
           <div className="mt-6 text-green-600 font-medium cursor-pointer hover:underline">
-            View experts →
+           <Link
+              href="/patient/experts"
+              className="mt-6 text-green-600 font-medium hover:underline"
+            >
+              View experts →
+            </Link>
           </div>
         </div>
 
@@ -68,7 +81,13 @@ export default function PatientDashboard() {
           </p>
 
           <div className="mt-6 text-purple-600 font-medium cursor-pointer hover:underline">
+           <Link
+            href="/patient/publications"
+            className="mt-6 text-purple-600 font-medium hover:underline"
+          >
             View publications →
+          </Link>
+
           </div>
         </div>
 

@@ -3,9 +3,14 @@
 import { useState } from "react";
 import publicationsData from "@/app/data/publications.json";
 import { FaBookOpen, FaSearch } from "react-icons/fa";
+import { useFavorites } from "@/app/hooks/useFavorites";
+import { FaHeart, FaRegHeart, FaStar, FaRegStar, FaBookmark, FaRegBookmark } from "react-icons/fa";
 
-export default function PublicationsPage() {
+
+export default function PublicationsPage() { 
   const [search, setSearch] = useState("");
+  const { addFavorite, removeFavorite, isFavorite } = useFavorites();
+
 
   const filteredPublications = publicationsData.filter((pub) => {
     return (
@@ -43,31 +48,58 @@ export default function PublicationsPage() {
 
       {/* Publications List */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {filteredPublications.map((pub) => (
-          <div
-            key={pub.id}
-            className="bg-white p-6 rounded-2xl shadow-md border hover:shadow-lg transition"
-          >
-            <h2 className="text-xl font-semibold text-gray-900">{pub.title}</h2>
-
-            <p className="text-gray-600 mt-1"><strong>Authors:</strong> {pub.authors}</p>
-            <p className="text-gray-600"><strong>Journal:</strong> {pub.journal}</p>
-            <p className="text-gray-600"><strong>Year:</strong> {pub.year}</p>
-
-            {/* AI Summary */}
-            <p className="mt-3 text-gray-700 bg-gray-50 p-3 rounded-lg text-sm">
-              <strong>AI Summary:</strong> {pub.summary}
-            </p>
-
-            <a
-              href={pub.url}
-              target="_blank"
-              className="text-purple-600 mt-4 inline-block hover:underline font-medium"
+        {filteredPublications.map((pub) => {
+           const favKey = `pub-${pub.id}`;
+          return (
+            <div
+              key={pub.id}
+              className="bg-white p-6 rounded-2xl shadow-md border hover:shadow-lg transition"
             >
-              View Full Publication →
-            </a>
-          </div>
-        ))}
+              <h2 className="text-xl font-semibold text-gray-900">{pub.title}</h2>
+
+              <p className="text-gray-600 mt-1"><strong>Authors:</strong> {pub.authors}</p>
+              <p className="text-gray-600"><strong>Journal:</strong> {pub.journal}</p>
+              <p className="text-gray-600"><strong>Year:</strong> {pub.year}</p>
+
+              {/* AI Summary */}
+              <p className="mt-3 text-gray-700 bg-gray-50 p-3 rounded-lg text-sm">
+                <strong>AI Summary:</strong> {pub.summary}
+              </p>
+
+              <a
+                href={pub.url}
+                target="_blank"
+                className="text-purple-600 mt-4 inline-block hover:underline font-medium"
+              >
+                View Full Publication →
+              </a>
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  isFavorite(favKey)
+                    ? removeFavorite(favKey)
+                    : addFavorite({ key: favKey, type: "publications", ...pub });
+                }}
+                 className={`mt-4 w-full flex items-center justify-center gap-2 py-2.5 rounded-xl text-sm font-medium transition-all
+                  ${isFavorite(favKey)
+                    ? "bg-purple-50 text-purple-700 border border-purple-200 hover:bg-purple-100"
+                    : "bg-indigo-50 text-indigo-700 border border-indigo-200 hover:bg-indigo-100"
+                  }
+                `}
+              >
+                {isFavorite(favKey) ? (
+                  <FaBookmark className="text-purple-600" />
+                ) : (
+                  <FaRegBookmark className="text-indigo-600" />
+                )}
+                {isFavorite(favKey) ? "Bookmarked" : "Add to Favorites"}
+              </button>
+
+            </div>
+          )
+        }
+          
+        )}
       </div>
 
     </div>

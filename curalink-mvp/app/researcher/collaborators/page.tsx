@@ -3,8 +3,11 @@
 import { useState } from "react";
 import collaboratorsData from "@/app/data/collaborators.json";
 import { FaUsers, FaSearch, FaEnvelope } from "react-icons/fa";
+import { useFavorites } from "@/app/hooks/useFavorites";
+import { FaHeart, FaRegHeart } from "react-icons/fa";
 
 export default function CollaboratorsPage() {
+  const { addFavorite, removeFavorite, isFavorite } = useFavorites();
   const [search, setSearch] = useState("");
 
   const filtered = collaboratorsData.filter((c) =>
@@ -41,8 +44,10 @@ export default function CollaboratorsPage() {
 
       {/* Collaborator Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-        {filtered.map((col) => (
-          <div
+        {filtered.map((col) => {
+          const favKey = `collab-${col.id}`;
+         return (
+           <div
             key={col.id}
             className="bg-white p-6 rounded-2xl shadow-md border hover:shadow-lg transition"
           >
@@ -77,8 +82,34 @@ export default function CollaboratorsPage() {
               <FaEnvelope />
               Contact Researcher →
             </a>
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  isFavorite(favKey)
+                    ? removeFavorite(favKey)
+                    : addFavorite({
+                        key: favKey,
+                        type: "collaborator",
+                        ...col,
+                      });
+                }}
+                className="mt-4 flex items-center gap-2 text-blue-600"
+              >
+                {isFavorite(favKey) ? (
+                  <>
+                    <FaHeart className="text-red-500" /> Remove Favorite
+                  </>
+                ) : (
+                  <>
+                    <FaRegHeart className="text-gray-600" /> Save to Favorites
+                  </>
+                )}
+              </button>
           </div>
-        ))}
+
+           )
+         
+        })}
       </div>
     </div>
   );

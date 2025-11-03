@@ -1,0 +1,11 @@
+[
+  {
+    "id": 1,
+    "title": "Breast Cancer Immunotherapy",
+    "condition": "Breast Cancer",
+    "status": "recruiting",
+    "location": "Boston, USA",
+    "contact": "trial@harvardresearch.org",
+    "description": "A study on the effectiveness of immunotherapy for breast cancer."
+  }
+]

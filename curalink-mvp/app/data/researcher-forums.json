@@ -1,0 +1,24 @@
+[
+  {
+    "id": 1,
+    "title": "What are the latest treatments for Glioma?",
+    "body": "I was recently diagnosed with glioma. Are there promising clinical trials or therapies?",
+    "askedBy": "Patient123",
+    "answers": []
+  },
+  {
+    "id": 2,
+    "title": "Is immunotherapy effective for lung cancer?",
+    "body": "I heard about immunotherapy. Is it effective for stage 3 lung cancer?",
+    "askedBy": "Patient456",
+    "answers": []
+  },
+  {
+    "id": 3,
+    "title": "Are there side effects of targeted therapy?",
+    "body": "I'm considering targeted therapy. What side effects should I be aware of?",
+    "askedBy": "Patient789",
+    "answers": []
+  }
+]
+

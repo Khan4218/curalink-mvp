@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import {useEffect, useState } from "react";
 import trialsData from "@/app/data/trials.json";
 import { FaFlask, FaSearch } from "react-icons/fa";
 import { useFavorites } from "@/app/hooks/useFavorites";
@@ -9,9 +9,24 @@ import { FaHeart, FaRegHeart, FaStar, FaRegStar, FaBookmark, FaRegBookmark } fro
 export default function ClinicalTrialsPage() {
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState("all");
+  const [profile, setProfile] = useState<any>(null);
   const { addFavorite, removeFavorite, isFavorite } = useFavorites();
 
-  const filteredTrials = trialsData.filter((trial) => {
+  // ✅ Load patient profile (condition + location)
+  useEffect(() => {
+    const stored = localStorage.getItem("patientProfile");
+    if (stored) setProfile(JSON.parse(stored));
+  }, []);
+
+  // ✅ STEP 1 — Personalization filter
+  const personalized = profile?.condition
+    ? trialsData.filter((t) =>
+        t.condition.toLowerCase().includes(profile.condition.toLowerCase())
+      )
+    : trialsData;
+
+  // ✅ STEP 2 — Apply search + status filters on top
+  const filteredTrials = personalized.filter((trial) => {
     const matchesSearch =
       trial.title.toLowerCase().includes(search.toLowerCase()) ||
       trial.condition.toLowerCase().includes(search.toLowerCase());

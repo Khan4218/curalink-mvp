@@ -7,80 +7,127 @@ export default function PatientOnboarding() {
   const router = useRouter();
 
   const [condition, setCondition] = useState("");
-  const [extraCondition, setExtraCondition] = useState("");
   const [location, setLocation] = useState("");
+  const [tags, setTags] = useState<string[]>([]);
+  const [tagInput, setTagInput] = useState("");
 
-  const handleContinue = () => {
+  const handleAddTag = () => {
+    if (tagInput.trim() !== "" && !tags.includes(tagInput.trim())) {
+      setTags([...tags, tagInput.trim()]);
+      setTagInput("");
+    }
+  };
+
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+
+    const patientProfile = {
+      condition,
+      location,
+      tags,
+    };
+
+    localStorage.setItem("patientProfile", JSON.stringify(patientProfile));
+
     router.push("/patient/dashboard");
   };
 
+
   return (
-    <main className="min-h-screen bg-gray-50 flex items-center justify-center px-4">
-      <div className="w-full max-w-xl bg-white shadow-sm rounded-2xl p-8">
-        
-        {/* Title */}
+    <div className="flex items-center justify-center min-h-screen bg-gray-50 p-6">
+      <form
+        onSubmit={handleSubmit}
+        className="bg-white shadow-lg rounded-2xl p-8 w-full max-w-lg space-y-6 border"
+      >
+        {/* Heading */}
         <h1 className="text-3xl font-semibold text-gray-900">
-          Patient Profile Setup
+          Patient Onboarding
         </h1>
+        <p className="text-gray-600">Tell us about your condition to personalize your dashboard.</p>
+        <button
+          onClick={() => {
+            localStorage.removeItem("patientProfile");
+            window.location.href = "/patient/onboarding";
+          }}
+          className="text-sm text-red-500 underline mt-2"
+        >
+          Reset profile
+        </button>
 
-        <p className="text-gray-600 mt-2">
-          Help us personalize your CuraLink experience.
-        </p>
 
-        {/* Condition Input */}
-        <div className="mt-8">
-          <label className="block text-gray-700 font-medium mb-1">
-            Describe your condition
-          </label>
-          <input
-            type="text"
-            placeholder="e.g., I have Brain Cancer"
+        {/* Condition Dropdown */}
+        <div>
+          <label className="text-gray-700 font-medium">Primary Condition</label>
+          <select
             value={condition}
             onChange={(e) => setCondition(e.target.value)}
-            className="w-full rounded-xl border border-gray-300 px-4 py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
-        </div>
-
-        {/* Extra Condition */}
-        <div className="mt-6">
-          <label className="block text-gray-700 font-medium mb-1">
-            Add another condition (optional)
-          </label>
-          <select
-            value={extraCondition}
-            onChange={(e) => setExtraCondition(e.target.value)}
-            className="w-full rounded-xl border border-gray-300 px-4 py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            required
+            className="w-full p-3 mt-2 border rounded-xl bg-gray-50 outline-none"
           >
-            <option value="">Select Condition</option>
+            <option value="">Select your condition</option>
+            <option value="Brain Cancer">Brain Cancer</option>
             <option value="Glioma">Glioma</option>
             <option value="Lung Cancer">Lung Cancer</option>
-            <option value="Brain Tumor">Brain Tumor</option>
+            <option value="Breast Cancer">Breast Cancer</option>
             <option value="Heart Disease">Heart Disease</option>
           </select>
         </div>
 
-        {/* Location */}
-        <div className="mt-6">
-          <label className="block text-gray-700 font-medium mb-1">
-            Your Location
-          </label>
+        {/* Location Input */}
+        <div>
+          <label className="text-gray-700 font-medium">Your Location</label>
           <input
             type="text"
             placeholder="City, Country"
             value={location}
             onChange={(e) => setLocation(e.target.value)}
-            className="w-full rounded-xl border border-gray-300 px-4 py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full p-3 mt-2 border rounded-xl bg-gray-50 outline-none"
+            required
           />
         </div>
 
-        {/* Continue Button */}
+        {/* Additional Conditions (Tags) */}
+        <div>
+          <label className="text-gray-700 font-medium">Additional Conditions (Optional)</label>
+
+          <div className="flex gap-3 mt-2">
+            <input
+              type="text"
+              placeholder="e.g., Tumor, Migraine..."
+              value={tagInput}
+              onChange={(e) => setTagInput(e.target.value)}
+              className="flex-1 p-3 border rounded-xl bg-gray-50 outline-none"
+            />
+            <button
+              type="button"
+              onClick={handleAddTag}
+              className="px-4 py-2 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition"
+            >
+              Add
+            </button>
+          </div>
+
+          {/* Tag Pills */}
+          <div className="mt-3 flex flex-wrap gap-2">
+            {tags.map((tag) => (
+              <span
+                key={tag}
+                className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        {/* Submit */}
         <button
-          onClick={handleContinue}
-          className="mt-8 w-full bg-blue-600 text-white py-3.5 rounded-xl text-lg hover:bg-blue-700 transition font-medium"
+          type="submit"
+          className="w-full p-3 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition font-medium"
         >
-          Continue
+          Continue →
         </button>
-      </div>
-    </main>
+      </form>
+    </div>
   );
 }

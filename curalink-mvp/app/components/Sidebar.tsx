@@ -1,7 +1,10 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
+import { FaHeartbeat } from "react-icons/fa";
+
 
 const patientLinks = [
   { name: "Patient Dashboard", href: "/patient/dashboard" },
@@ -27,11 +30,24 @@ export default function Sidebar() {
     <aside className="w-64 bg-white border-r border-gray-200 min-h-screen px-6 py-6">
 
       {/* Logo */}
-      <h2 className="text-4xl text-gray-900 text-center mb-6 tracking-tight">
-        <Link href="/" className="hover:text-blue-600 transition font-semibold">
-          CuraLink
+      <h1 className="flex items-center gap-3 px-2 mb-6">
+        <Link href="/" className="flex items-center gap-3">
+          <Image
+            src="/curaLink-logo.svg"
+            alt="CuraLink Logo"
+            width={32}
+            height={32}
+            className="object-contain"
+          />
+
+          <span className="text-2xl font-bold tracking-tight">
+            <span className="text-gray-900">Cura</span>
+            <span className="text-blue-600">Link</span>
+          </span>
         </Link>
-      </h2>
+      </h1>
+
+
 
       {/* Patient Section */}
       <h3 className="text-[11px] tracking-widest text-gray-500 font-medium px-3 mt-4 uppercase">

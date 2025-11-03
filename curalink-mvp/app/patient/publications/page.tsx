@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState,useEffect} from "react";
 import publicationsData from "@/app/data/publications.json";
 import { FaBookOpen, FaSearch } from "react-icons/fa";
 import { useFavorites } from "@/app/hooks/useFavorites";
@@ -11,14 +11,30 @@ export default function PublicationsPage() {
   const [search, setSearch] = useState("");
   const { addFavorite, removeFavorite, isFavorite } = useFavorites();
 
+   const [profile, setProfile] = useState<any>(null);
 
-  const filteredPublications = publicationsData.filter((pub) => {
-    return (
-      pub.title.toLowerCase().includes(search.toLowerCase()) ||
-      pub.authors.toLowerCase().includes(search.toLowerCase()) ||
-      pub.journal.toLowerCase().includes(search.toLowerCase())
-    );
-  });
+    // ✅ Load patient profile (condition)
+    useEffect(() => {
+      const stored = localStorage.getItem("patientProfile");
+      if (stored) setProfile(JSON.parse(stored));
+    }, []);
+
+    const personalized = profile?.condition
+    ? publicationsData.filter((pub) =>
+        (pub.title + pub.summary + pub.journal)
+          .toLowerCase()
+          .includes(profile.condition.toLowerCase())
+      )
+    : publicationsData;
+
+    const filteredPublications = personalized.filter((pub) => {
+      return (
+        pub.title.toLowerCase().includes(search.toLowerCase()) ||
+        pub.authors.toLowerCase().includes(search.toLowerCase()) ||
+        pub.journal.toLowerCase().includes(search.toLowerCase())
+      );
+    });
+
 
   return (
     <div className="space-y-8">

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import expertsData from "@/app/data/experts.json";
 import { FaUserMd, FaSearch } from "react-icons/fa";
 import { FaHeart, FaRegHeart, FaStar, FaRegStar, FaBookmark, FaRegBookmark } from "react-icons/fa";
@@ -11,16 +11,29 @@ import { useFavorites } from "@/app/hooks/useFavorites";
 export default function ExpertsPage() {
   const [search, setSearch] = useState("");
   const { addFavorite, removeFavorite, isFavorite } = useFavorites();
+  const [profile, setProfile] = useState<any>(null);
+
+    useEffect(() => {
+          const stored = localStorage.getItem("patientProfile");
+          if (stored) setProfile(JSON.parse(stored));
+        }, []);
+
+    const personalized = profile?.condition
+    ? expertsData.filter((exp) =>
+        exp.condition.toLowerCase().includes(profile.condition.toLowerCase())
+      )
+    : expertsData;
 
 
 
-  const filteredExperts = expertsData.filter((expert) => {
+  const filteredExperts = personalized.filter((expert) => {
     return (
       expert.name.toLowerCase().includes(search.toLowerCase()) ||
       expert.specialty.toLowerCase().includes(search.toLowerCase()) ||
       expert.condition.toLowerCase().includes(search.toLowerCase())
     );
   });
+
 
   return (
     <div className="space-y-8">

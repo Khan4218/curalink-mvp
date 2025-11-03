@@ -17,6 +17,7 @@ const researcherLinks = [
   { name: "Add Trial", href: "/researcher/add-trial" },
   { name: "Collaborators", href: "/researcher/collaborators" },
   { name: "Forums", href: "/researcher/forums" },
+  { name: "Favorites", href: "/researcher/favorites" },
 ];
 
 export default function Sidebar() {

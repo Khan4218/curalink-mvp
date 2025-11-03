@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "name": "Dr. Emily Zhang",
+    "specialty": "Oncology",
+    "interests": "Immunotherapy, Clinical AI",
+    "institution": "Stanford University",
+    "publications": 23,
+    "email": "emily.zhang@stanford.edu",
+    "summary": "Researcher specializing in cancer immunotherapy and translational oncology, collaborating on multi-center trials."
+  },
+  {
+    "id": 2,
+    "name": "Dr. Michael Chen",
+    "specialty": "Neurology",
+    "interests": "Glioma, Brain Tumor Surgery, AI Diagnostics",
+    "institution": "Harvard Medical School",
+    "publications": 18,
+    "email": "michael.chen@harvard.edu",
+    "summary": "Focuses on glioma and neuro-oncology, with ongoing research in AI-assisted tumor classification."
+  },
+  {
+    "id": 3,
+    "name": "Dr. Aisha Rahman",
+    "specialty": "Genetics",
+    "interests": "Gene Therapy, Rare Diseases, RNA Editing",
+    "institution": "Oxford University",
+    "publications": 30,
+    "email": "aisha.rahman@ox.ac.uk",
+    "summary": "Geneticist working on next-gen RNA editing and gene therapy for rare inherited conditions."
+  }
+]

@@ -6,9 +6,9 @@ import { useRouter } from "next/navigation";
 export default function PatientOnboarding() {
   const router = useRouter();
 
-  const [condition, setCondition] = useState("");
-  const [location, setLocation] = useState("");
-  const [tags, setTags] = useState<string[]>([]);
+  const [condition, setCondition] = useState("Lung Cancer");
+  const [location, setLocation] = useState("India");
+  const [tags, setTags] = useState<string[]>(["lung cancer"]);
   const [tagInput, setTagInput] = useState("");
 
   const handleAddTag = () => {
@@ -127,6 +127,9 @@ export default function PatientOnboarding() {
         >
           Continue →
         </button>
+          <p className="text-gray-500 text-sm">
+          (Pre-filled for demo — you can edit if needed)
+          </p>
       </form>
     </div>
   );

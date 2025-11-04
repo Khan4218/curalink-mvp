@@ -204,6 +204,13 @@ App will be available at:
 
 Deployed on vercel: https://curalink-mvp.vercel.app/
 
+## 🎥 Demo Video (MVP)
+https://loom.com/share/folder/58055b3816de486e8316eb156d9b72b3
+
+## 🎥 Backend Architecture Overview
+https://www.loom.com/share/e9857848263140fe8ee1377c8e1adf46
+
+
 
 ## 👤 Author
 

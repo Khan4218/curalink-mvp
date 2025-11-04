@@ -38,108 +38,109 @@ export default function ClinicalTrialsPage() {
   });
 
   return (
-    <div className="space-y-8">
+  <div className="space-y-10">
 
-      {/* Header */}
-      <div>
-        <h1 className="text-3xl font-semibold text-gray-900 flex items-center gap-3">
-          <FaFlask className="text-blue-600 text-2xl" />
-          Clinical Trials
-        </h1>
-        <p className="text-gray-600 mt-2">
-          Browse recommended clinical trials based on your condition.
-        </p>
+    {/* Header */}
+    <div className="flex flex-col gap-2">
+      <h1 className="text-4xl font-bold text-gray-900 flex items-center gap-3">
+        <FaFlask className="text-blue-600 text-3xl" />
+        Clinical Trials
+      </h1>
+      <p className="text-gray-600 text-lg">
+        Browse recommended clinical trials based on your condition.
+      </p>
+    </div>
+
+    {/* Search + Filters */}
+    <div className="flex flex-col md:flex-row gap-4">
+
+      {/* Search Bar */}
+      <div className="flex items-center bg-white p-4 rounded-2xl border border-gray-200 shadow-sm hover:shadow-md transition-all">
+        <FaSearch className="text-gray-500 mr-3 text-lg" />
+        <input
+          type="text"
+          placeholder="Search trials (e.g., Lung Cancer, Immunotherapy)..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          className="w-full outline-none text-gray-800 text-base"
+        />
       </div>
 
-      {/* Search + Filters */}
-      <div className="flex flex-col md:flex-row gap-4">
-        {/* Search Bar */}
-        <div className="flex items-center bg-white p-3 rounded-xl border w-full shadow-sm">
-          <FaSearch className="text-gray-500 mr-2" />
-          <input
-            type="text"
-            placeholder="Search trials (e.g., Lung Cancer, Immunotherapy)..."
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            className="w-full outline-none text-gray-800"
-          />
-        </div>
+      {/* Status Filter */}
+      <select
+        value={statusFilter}
+        onChange={(e) => setStatusFilter(e.target.value)}
+        className="p-4 rounded-2xl border border-gray-200 bg-white shadow-sm hover:shadow-md transition text-gray-800 text-base"
+      >
+        <option value="all">All Status</option>
+        <option value="recruiting">Recruiting</option>
+        <option value="completed">Completed</option>
+      </select>
+    </div>
 
-        {/* Status Filter */}
-        <select
-          value={statusFilter}
-          onChange={(e) => setStatusFilter(e.target.value)}
-          className="p-3 rounded-xl border bg-white shadow-sm text-gray-800"
-        >
-          <option value="all">All Status</option>
-          <option value="recruiting">Recruiting</option>
-          <option value="completed">Completed</option>
-        </select>
-      </div>
+    {/* Trial Cards */}
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      {filteredTrials.map((trial) => {
+        const favKey = `trial-${trial.id}`;
 
-      {/* Trial Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {filteredTrials.map((trial) => {
-          const favKey = `trial-${trial.id}`;
+        return (
+          <div
+            key={trial.id}
+            className="bg-white/90 backdrop-blur rounded-2xl p-6 border border-gray-200 hover:border-blue-300 shadow-sm hover:shadow-lg transition-all duration-300"
+          >
+            {/* Title */}
+            <h2 className="text-xl font-semibold text-gray-900 leading-snug">
+              {trial.title}
+            </h2>
 
-          return (
-            <div
-              key={trial.id}
-              className="bg-white p-6 rounded-2xl shadow-md border hover:shadow-lg transition"
-              >
-              <h2 className="text-xl font-semibold text-gray-900">{trial.title}</h2>
+            {/* Details */}
+            <div className="mt-3 space-y-1.5 text-gray-700">
+              <p><strong>Condition:</strong> {trial.condition}</p>
+              <p><strong>Status:</strong> {trial.status}</p>
+              <p><strong>Location:</strong> {trial.location}</p>
+            </div>
 
-              <p className="text-gray-600 mt-1">
-                <strong>Condition:</strong> {trial.condition}
-              </p>
+            {/* AI Summary */}
+            <p className="mt-4 text-gray-700 bg-gray-50 p-4 rounded-xl text-sm leading-relaxed border border-gray-100">
+              <strong className="text-gray-900">AI Summary:</strong> {trial.summary}
+            </p>
 
-              <p className="text-gray-600">
-                <strong>Status:</strong> {trial.status}
-              </p>
+            {/* Contact */}
+            <a
+              href={`mailto:${trial.contact}`}
+              className="text-blue-600 mt-4 inline-block hover:underline font-medium"
+            >
+              Contact Trial Coordinator →
+            </a>
 
-              <p className="text-gray-600">
-                <strong>Location:</strong> {trial.location}
-              </p>
-
-              {/* AI Summary Placeholder */}
-              <p className="mt-3 text-gray-700 bg-gray-50 p-3 rounded-lg text-sm">
-                <strong>AI Summary:</strong> {trial.summary}
-              </p>
-
-              <a
-                href={`mailto:${trial.contact}`}
-                className="text-blue-600 mt-4 inline-block hover:underline font-medium"
-              >
-                Contact Trial Coordinator →
-              </a>
-            
-
-              <button
-                onClick={(e) => {
-                  e.preventDefault();
+            {/* Favorite Button */}
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                isFavorite(favKey)
+                  ? removeFavorite(favKey)
+                  : addFavorite({ key: favKey, type: "trial", ...trial });
+              }}
+              className={`mt-5 w-full flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-medium transition-all
+                ${
                   isFavorite(favKey)
-                    ? removeFavorite(favKey)
-                    : addFavorite({ key: favKey, type: "trial", ...trial });
-                }}
-                 className={`mt-4 w-full flex items-center justify-center gap-2 py-2.5 rounded-xl text-sm font-medium transition-all
-                  ${isFavorite(favKey)
                     ? "bg-yellow-50 text-yellow-700 border border-yellow-200 hover:bg-yellow-100"
                     : "bg-blue-50 text-blue-700 border border-blue-200 hover:bg-blue-100"
-                  }
-                `}
-              >
-                {isFavorite(favKey) ? (
-                  <FaStar className="text-yellow-500" />
-                ) : (
-                  <FaRegStar className="text-blue-600" />
-                )}
-                {isFavorite(favKey) ? "Saved ★" : "Save to Favorites"}
-              </button>
-
-            </div>
-       );
-        })}
-      </div>
+                }
+              `}
+            >
+              {isFavorite(favKey) ? (
+                <FaStar className="text-yellow-500" />
+              ) : (
+                <FaRegStar className="text-blue-600" />
+              )}
+              {isFavorite(favKey) ? "Saved ★" : "Save to Favorites"}
+            </button>
+          </div>
+        );
+      })}
     </div>
-  );
+  </div>
+);
+
 }

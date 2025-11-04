@@ -3,27 +3,16 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { FaHeartbeat } from "react-icons/fa";
-
-
-const patientLinks = [
-  { name: "Patient Dashboard", href: "/patient/dashboard" },
-  { name: "Clinical Trials", href: "/patient/clinical-trials" },
-  { name: "Health Experts", href: "/patient/experts" },
-  { name: "Publications", href: "/patient/publications" },
-  { name: "Forums", href: "/patient/forums" },
-  { name: "Favorites", href: "/patient/favorites" },
-];
 
 const researcherLinks = [
-  { name: "Researcher Dashboard", href: "/researcher/dashboard" },
+  { name: "Dashboard", href: "/researcher/dashboard" },
   { name: "Add Trial", href: "/researcher/add-trial" },
   { name: "Collaborators", href: "/researcher/collaborators" },
   { name: "Forums", href: "/researcher/forums" },
   { name: "Favorites", href: "/researcher/favorites" },
 ];
 
-export default function Sidebar() {
+export default function ResearcherSidebar() {
   const pathname = usePathname();
 
   return (
@@ -47,44 +36,11 @@ export default function Sidebar() {
         </Link>
       </h1>
 
-
-
-      {/* Patient Section */}
-      <h3 className="text-[11px] tracking-widest text-gray-500 font-medium px-3 mt-4 uppercase">
-        Patient
-      </h3>
-
-      <nav className="mt-3 flex flex-col space-y-1.5">
-        {patientLinks.map((link) => {
-          const active = pathname === link.href;
-          return (
-            <Link
-              key={link.name}
-              href={link.href}
-              className={`px-4 py-2.5 rounded-xl transition
-                ${
-                  active
-                    ? "bg-blue-50 text-blue-700 font-medium"
-                    : "text-gray-700 hover:bg-gray-100"
-                }`}
-            >
-              {link.name}
-            </Link>
-          );
-        })}
-      </nav>
-
-      {/* Divider */}
-      <div className="mx-3 my-6 h-px bg-gray-200 rounded-full opacity-40"></div>
-
-      {/* Researcher Section */}
-      <h3 className="text-[11px] tracking-widest text-gray-500 font-medium px-3 uppercase">
-        Researcher
-      </h3>
-
-      <nav className="mt-3 flex flex-col space-y-1.5">
+      {/* Links */}
+      <nav className="mt-1 flex flex-col space-y-1.5">
         {researcherLinks.map((link) => {
           const active = pathname === link.href;
+
           return (
             <Link
               key={link.name}
@@ -101,7 +57,6 @@ export default function Sidebar() {
           );
         })}
       </nav>
-
     </aside>
   );
 }

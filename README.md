@@ -130,6 +130,7 @@ When a patient completes onboarding, a profile is saved:
   "location": "India",
   "tags": ["Tumor"]
 }
+```
 
 All patient pages use this data to provide auto-filtered, personalized results:
 
@@ -141,7 +142,7 @@ Publications → match tags (if added)
 
 This gives a realistic “AI-powered recommendation” feel.
 
-⭐ Favorites System
+## ⭐ Favorites System
 
 The Favorites system uses a universal React hook:
 useFavorites()
@@ -163,7 +164,7 @@ Publications
 
 Collaborators
 
-📚 Forums System
+## 📚 Forums System
 Patient:
 
 Ask questions
@@ -180,7 +181,7 @@ Each question resolves via dynamic route:
 /patient/forums/[postId]
 /researcher/forums/[id]
 
-🛠️ Setup & Installation
+## 🛠️ Setup & Installation
 1. Clone the repo
 
 git clone https://github.com/Khan4218/curalink-mvp.git
@@ -199,12 +200,12 @@ npm run dev
 App will be available at:
 👉 http://localhost:3000
 
-📦 Deployment (Vercel)
+## 📦 Deployment (Vercel)
 
 Deployed on vercel:
 
 
-👤 Author
+## 👤 Author
 
 Akbar Khan
 Full Stack Developer
@@ -213,7 +214,7 @@ Portfolio: https://mir-akbar-portfolio-react-v2.netlify.app/
 GitHub: https://github.com/Khan4218
 
 
-This MVP meets all requirements for the hackathon challenge:
+## This MVP meets all requirements for the hackathon challenge:
 
 ✅ Dual-flow: Patients & Researchers
 ✅ Personalized dashboards

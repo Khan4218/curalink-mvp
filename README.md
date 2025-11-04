@@ -202,7 +202,7 @@ App will be available at:
 
 ## 📦 Deployment (Vercel)
 
-Deployed on vercel:
+Deployed on vercel: https://curalink-mvp.vercel.app/
 
 
 ## 👤 Author
